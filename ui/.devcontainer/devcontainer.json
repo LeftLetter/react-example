@@ -1,5 +1,5 @@
 {
-  "name": "vscode-compose-template-ui",
+  "name": "react-example-ui",
   "dockerComposeFile": ["../../docker-compose.yml"],
   "service": "ui",
   "shutdownAction": "none",

@@ -1,5 +1,5 @@
 {
-  "name": "vscode-compose-template-server",
+  "name": "react-example-server",
   "dockerComposeFile": ["../../docker-compose.yml"],
   "service": "server",
   "shutdownAction": "none",
