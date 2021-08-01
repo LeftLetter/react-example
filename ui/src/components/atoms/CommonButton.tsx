@@ -1,21 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
+import { cns } from '../../utils/common'
 
 // button要素が本来持つ属性+テキスト+テーマを受け付ける
 type Props = Omit<JSX.IntrinsicElements['button'], 'ref'> & {
   className?: string
   children: React.ReactNode
-  theme?: 'primary' | 'secondary' | 'error'
+  colorTheme?: 'primary' | 'secondary' | 'error'
 }
 
 const Component: React.VFC<Props> = ({
-  className,
+  className = '',
   children,
-  theme = 'primary',
+  colorTheme = 'primary',
   ...attributes
 }) => (
   <button
-    className={['common-button', theme, className].join(' ')}
+    className={cns('common-button', colorTheme, className)}
     data-testid="common-button" // テスト用
     {...attributes}
   >
@@ -29,7 +30,14 @@ const StyledComponent = styled(Component)`
     height: 40px;
     border-radius: 5px;
     border: none;
-    color: var(--color-main-light);
+    color: var(--color-sub);
+
+    :disabled {
+      background-color: var(--color-main-light);
+      :hover {
+        background-color: var(--color-main-light);
+      }
+    }
   }
 
   &.primary {
