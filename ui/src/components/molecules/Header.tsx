@@ -32,8 +32,10 @@ const StyledComponent = styled(Component)`
     padding-right: 10px;
     background-color: var(--color-main);
 
+    /* classNameを注入することでCommonTextを拡張 */
     > .header-text {
       line-height: var(--line-height);
+      white-space: nowrap;
     }
   }
 `
