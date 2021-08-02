@@ -55,5 +55,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.3.2",
     "sass": "^1.37.0"
-  }
+  },
+  "proxy": "http://server:3000"
 }
