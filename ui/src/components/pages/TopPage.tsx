@@ -1,50 +1,47 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import { Cards } from '../../utils/types/Cards'
 import { Header } from '../molecules/Header'
+import { ItemCard } from '../organisms/ItemCard'
 
-type Props = {
+type Props = ContainerProps
+
+type ContainerProps = {
   className?: string
+  cards: Cards
 }
-
-type ContainerProps = Props
 
 const Component: React.VFC<Props> = ({ className = '', ...props }) => (
   <div className={className}>
     <Header>React Example</Header>
     <main>
       <div className="item-container">
-        <div className="item-card">aaa</div>
+        {props.cards.map((e, i) => (
+          <ItemCard key={i} card={e}></ItemCard>
+        ))}
       </div>
     </main>
   </div>
 )
 
-const StyledComponent = styled(Component)`
+export const StyledComponent = styled(Component)`
   > main {
     padding-top: 60px;
 
     > .item-container {
       display: flex;
+      flex-wrap: wrap;
       padding: 20px;
-
-      > .item-card {
-        width: 300px;
-        height: 300px;
-        border: 2px solid var(--color-main);
-        border-radius: 10px;
-        padding: 10px;
-      }
     }
   }
 `
 
 const Container: React.FC<ContainerProps> = (props) => {
-  // const [words, setWords] = useState<WordsType>([])
   useEffect(() => {
     ;(async () => {
-      const response = await fetch('api/v1')
-      const data = await response.json()
-      // setWords(data)
+      // データ取得処理を書く
+      // const response = await fetch('api/v1')
+      // const data = await response.json()
     })()
   }, [])
 
