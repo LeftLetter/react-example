@@ -7,7 +7,6 @@
   "extensions": [
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "octref.vetur",
     "jpoissonnier.vscode-styled-components",
     "eamodio.gitlens",
     "mhutchie.git-graph"
@@ -22,7 +21,6 @@
       "source.organizeImports": true,
       "source.fixAll.eslint": true
     },
-    "vetur.format.defaultFormatter.js": "none",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "[json]": {
       "editor.tabSize": 2

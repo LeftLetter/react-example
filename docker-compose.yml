@@ -11,8 +11,6 @@ services:
       - ui-node-modules:/workspace/ui/node_modules
       - ui-extensions:/root/.vscode-server
     command: /bin/sh -c "while sleep 1000; do :; done"
-    ports:
-      - "20001:8080"
   server:
     env_file:
       - ./server/.env
@@ -24,8 +22,6 @@ services:
       - server-node-modules:/workspace/server/node_modules
       - server-extensions:/root/.vscode-server
     command: /bin/sh -c "while sleep 1000; do :; done"
-    ports:
-      - "20002:3000"
 volumes:
   ui-node-modules:
   server-node-modules:
