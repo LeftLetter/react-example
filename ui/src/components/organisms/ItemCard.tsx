@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useCardDelete } from '../../hooks/useCardDelete'
 import { cns } from '../../utils/common'
 import { Card } from '../../utils/types/Cards'
 import { CommonButton } from '../atoms/CommonButton'
 import { CommonText } from '../atoms/CommonText'
 
 type Props = {
-  handleClick: (event: React.MouseEvent<HTMLInputElement>) => void
+  // handleClick: (event: React.MouseEvent<HTMLButtonElement>, id: string) => void
+  handleClick: (id: string) => void
 } & ContainerProps
 
 type ContainerProps = {
@@ -14,12 +16,20 @@ type ContainerProps = {
   card: Card
 }
 
-const Component: React.VFC<Props> = ({ className = '', ...props }) => (
+const Component: React.VFC<Props> = ({
+  className = '',
+  handleClick,
+  ...props
+}) => (
   <div className={cns('item-card', className)}>
     <CommonText size="large">{props.card.title}</CommonText>
     <br />
     <CommonText size="medium">{props.card.description}</CommonText>
-    <CommonButton className="delete" colorTheme="error">
+    <CommonButton
+      className="delete"
+      colorTheme="error"
+      onClick={() => handleClick(props.card.id)}
+    >
       ×
     </CommonButton>
   </div>
@@ -50,11 +60,9 @@ export const StyledComponent = styled(Component)`
 `
 
 const Container: React.FC<ContainerProps> = (props) => {
-  const handleClick = () => {
-    // ItemCard削除処理を書く
-  }
+  const removeCard = useCardDelete()
 
-  return <StyledComponent {...props} handleClick={handleClick} />
+  return <StyledComponent {...props} handleClick={removeCard} />
 }
 
 export const ItemCard = Container

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useCardState } from '../../hooks/useCardState'
+import { useCardFetch } from '../../hooks/useCardFetch'
 import { Cards } from '../../utils/types/Cards'
 import { Header } from '../molecules/Header'
 import { ItemCard } from '../organisms/ItemCard'
@@ -37,7 +37,7 @@ export const StyledComponent = styled(Component)`
 `
 
 const Container: React.FC<ContainerProps> = (props) => {
-  const [cards, setCards] = useCardState()
+  const cards = useCardFetch()
 
   return <StyledComponent {...props} cards={cards} />
 }
