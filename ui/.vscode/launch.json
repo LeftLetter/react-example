@@ -2,12 +2,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Attach to chrome",
       "type": "pwa-chrome",
       "request": "attach",
-      "name": "Attach Chrome",
       "port": 9222,
-      "url": "http://localhost:3000",
+      "urlFilter": "http://localhost:3000/*",
       "webRoot": "${workspaceFolder}"
+      // "urlFilter": "http://localhost:1234/*"
+      // "webRoot": "${workspaceFolder}/src"
+      // "outFiles": ["${workspaceFolder}/dist/*.js"]
     }
   ]
 }
