@@ -31,6 +31,7 @@ const StyledComponent = styled(Component)`
     padding-left: 10px;
     padding-right: 10px;
     background-color: var(--color-main);
+    z-index: 1;
 
     /* classNameを注入することでCommonTextを拡張 */
     > .header-text {
