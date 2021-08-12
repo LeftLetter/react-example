@@ -7,7 +7,6 @@ import { CommonButton } from '../atoms/CommonButton'
 import { CommonText } from '../atoms/CommonText'
 
 type Props = {
-  // handleClick: (event: React.MouseEvent<HTMLButtonElement>, id: string) => void
   handleClick: (id: string) => void
 } & ContainerProps
 

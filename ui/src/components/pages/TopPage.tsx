@@ -1,45 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useCardFetch } from '../../hooks/useCardFetch'
-import { Cards } from '../../utils/types/Cards'
+import { CardContextProvider } from '../../contexts/cardContext'
 import { Header } from '../molecules/Header'
-import { ItemCard } from '../organisms/ItemCard'
+import { MainContents } from '../organisms/MainContents'
 
-type Props = { cards: Cards } & ContainerProps
+type Props = ContainerProps
 
 type ContainerProps = {
   className?: string
 }
 
-const Component: React.VFC<Props> = ({ className = '', ...props }) => (
+const Component: React.VFC<Props> = ({ className = '' }) => (
   <div className={className}>
     <Header>React Example</Header>
-    <main>
-      <div className="item-container">
-        {props.cards.map((e, i) => (
-          <ItemCard key={i} card={e} />
-        ))}
-      </div>
-    </main>
+    <CardContextProvider>
+      <MainContents></MainContents>
+    </CardContextProvider>
   </div>
 )
 
-export const StyledComponent = styled(Component)`
-  > main {
-    padding-top: 60px;
-
-    > .item-container {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 20px;
-    }
-  }
-`
+export const StyledComponent = styled(Component)``
 
 const Container: React.FC<ContainerProps> = (props) => {
-  const cards = useCardFetch()
-
-  return <StyledComponent {...props} cards={cards} />
+  return <StyledComponent {...props} />
 }
 
 export const TopPage = Container

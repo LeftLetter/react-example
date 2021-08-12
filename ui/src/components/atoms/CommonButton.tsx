@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { cns } from '../../utils/common'
 
 // button要素が本来持つ属性+テキスト+テーマを受け付ける
-type Props = Omit<JSX.IntrinsicElements['button'], 'ref'> & {
+type Props = JSX.IntrinsicElements['button'] & {
   className?: string
   children: React.ReactNode
   colorTheme?: 'primary' | 'secondary' | 'error'

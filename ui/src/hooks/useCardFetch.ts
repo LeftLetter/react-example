@@ -13,8 +13,8 @@ export const useCardFetch = (): Cards => {
   useEffect(() => {
     ;(async () => {
       const response = await fetch('api/v1')
-      const data = await response.json()
-      setCards(data)
+      const responseObj = await response.json()
+      setCards(responseObj)
     })()
     // setCardsはuseStateのため不要
     // eslint-disable-next-line react-hooks/exhaustive-deps

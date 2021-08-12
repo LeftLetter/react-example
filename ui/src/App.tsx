@@ -2,7 +2,6 @@ import { mount, route } from 'navi'
 import React from 'react'
 import { Router, View } from 'react-navi'
 import { TopPage } from './components/pages/TopPage'
-import { CardContextProvider } from './contexts/cardContext'
 
 const routes = mount({
   '/': route({
@@ -12,11 +11,9 @@ const routes = mount({
 
 const App: React.VFC = () => {
   return (
-    <CardContextProvider>
-      <Router routes={routes}>
-        <View />
-      </Router>
-    </CardContextProvider>
+    <Router routes={routes}>
+      <View />
+    </Router>
   )
 }
 

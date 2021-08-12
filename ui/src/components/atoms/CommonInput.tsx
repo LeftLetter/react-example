@@ -1,19 +1,25 @@
 import React from 'react'
+import { UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
 import { cns } from '../../utils/common'
+import { ItemForm } from '../../utils/types/ItemForm'
 
 // input要素が本来持つ属性を受け付ける
-type Props = Omit<JSX.IntrinsicElements['input'], 'ref'> & {
+type Props = JSX.IntrinsicElements['input'] & {
   className?: string
-}
+} & ReturnType<UseFormRegister<ItemForm>>
 
-const Component: React.VFC<Props> = ({ className = '', ...attributes }) => (
-  <input
-    className={cns('common-input', className)}
-    data-testid="common-input" // テスト用
-    {...attributes}
-  />
+const Component = React.forwardRef<HTMLInputElement, Props>(
+  ({ className = '', ...attributes }, ref) => (
+    <input
+      className={cns('common-input', className)}
+      data-testid="common-input" // テスト用
+      {...attributes}
+      ref={ref}
+    />
+  )
 )
+Component.displayName = 'Component'
 
 const StyledComponent = styled(Component)`
   &.common-input {

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { cns } from '../../utils/common'
 
 // span要素が本来持つ属性+テキスト+テーマを受け付ける
-type Props = Omit<JSX.IntrinsicElements['span'], 'ref'> & {
+type Props = JSX.IntrinsicElements['span'] & {
   className?: string
   children: React.ReactNode
   colorTheme?: 'normal' | 'error' | 'sub'
