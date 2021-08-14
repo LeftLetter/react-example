@@ -14,7 +14,25 @@ type Props = {
 
 export const CardContextProvider: React.VFC<Props> = (props) => {
   const [cards, setCards] = useState<Cards>([])
-  const removeCard = (id: string) => setCards(cards.filter((e) => e.id !== id))
+  const removeCard = (id: string) => {
+    ;(async () => {
+      let isOK = true
+      const response = await fetch('api/v1', {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: id }),
+      }).catch(() => {
+        isOK = false
+      })
+
+      if (isOK && response instanceof Response) {
+        setCards(cards.filter((e) => e.id !== id))
+      }
+    })()
+  }
 
   return (
     <CardContext.Provider value={cards}>

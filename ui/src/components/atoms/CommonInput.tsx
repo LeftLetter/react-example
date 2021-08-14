@@ -11,17 +11,25 @@ import { cns } from '../../utils/common'
 
 type Props<T> = {
   className?: string
+  id?: string
   field: ControllerRenderProps<T, Path<T>>
   fieldState?: ControllerFieldState
 }
 
 type ContainerProps<T> = UseControllerProps<T> & {
   className?: string
+  id?: string
 }
 
-const Component = <T,>({ className = '', field, fieldState }: Props<T>) => (
+const Component = <T,>({
+  className = '',
+  id = '',
+  field,
+  fieldState,
+}: Props<T>) => (
   <input
     className={cns('common-input', className)}
+    id={id}
     data-testid="common-input" // テスト用
     {...field}
   />
@@ -43,6 +51,7 @@ export const StyledComponent = styled(Component)`
 
 const Container = <T,>({
   className = '',
+  id = '',
   ...attributes
 }: ContainerProps<T>): JSX.Element => {
   const { field, fieldState } = useController(attributes)
@@ -50,6 +59,7 @@ const Container = <T,>({
   return (
     <StyledComponent<string>
       className={className}
+      id={id}
       field={field}
       fieldState={fieldState}
     />

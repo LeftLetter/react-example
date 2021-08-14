@@ -13,6 +13,7 @@ import { cns } from '../../utils/common'
 import { ItemForm } from '../../utils/types/ItemForm'
 import { CommonButton } from '../atoms/CommonButton'
 import { CommonInput } from '../atoms/CommonInput'
+import { CommonText } from '../atoms/CommonText'
 
 type Props = {
   control: Control<ItemForm>
@@ -29,17 +30,27 @@ type ContainerProps = {
 const Component: React.VFC<Props> = ({ className = '', ...props }) => (
   <div className={cns('item-form-card', className)}>
     <form onSubmit={props.handleSubmit(props.onSubmit)}>
-      <CommonInput<ItemForm>
+      <label htmlFor="title">
+        <CommonText>Title</CommonText>
+      </label>
+      <CommonInput
         control={props.control}
+        id="title"
+        className="card-input"
         name="title"
         rules={{ required: true }}
       ></CommonInput>
-      <CommonInput<ItemForm>
+      <label htmlFor="description">
+        <CommonText>Description</CommonText>
+      </label>
+      <CommonInput
         control={props.control}
+        id="description"
+        className="card-input"
         name="description"
         rules={{ required: true }}
       ></CommonInput>
-      <CommonButton>追加</CommonButton>
+      <CommonButton className="add-button">追加</CommonButton>
     </form>
   </div>
 )
@@ -55,6 +66,16 @@ export const StyledComponent = styled(Component)`
     border-radius: 10px;
     padding: 10px;
     margin: 10px;
+    > * > .card-input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    > * > .add-button {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
   }
 `
 
