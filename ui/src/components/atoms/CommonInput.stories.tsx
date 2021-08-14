@@ -12,6 +12,6 @@ const Template: ComponentStory<typeof CommonInput> = (args) => (
 
 export const Text = Template.bind({})
 Text.args = {
-  type: 'text',
-  disabled: false,
+  // type: 'text',
+  // disabled: false,
 }

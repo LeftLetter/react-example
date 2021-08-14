@@ -29,8 +29,16 @@ type ContainerProps = {
 const Component: React.VFC<Props> = ({ className = '', ...props }) => (
   <div className={cns('item-form-card', className)}>
     <form onSubmit={props.handleSubmit(props.onSubmit)}>
-      <CommonInput {...props.register('title', { required: true })} />
-      <CommonInput {...props.register('description', { required: true })} />
+      <CommonInput<ItemForm>
+        control={props.control}
+        name="title"
+        rules={{ required: true }}
+      ></CommonInput>
+      <CommonInput<ItemForm>
+        control={props.control}
+        name="description"
+        rules={{ required: true }}
+      ></CommonInput>
       <CommonButton>追加</CommonButton>
     </form>
   </div>
@@ -51,7 +59,9 @@ export const StyledComponent = styled(Component)`
 `
 
 const Container: React.FC<ContainerProps> = (props) => {
-  const { control, register, reset, handleSubmit } = useForm<ItemForm>()
+  const { control, register, reset, handleSubmit } = useForm<ItemForm>({
+    defaultValues: { title: '', description: '' },
+  })
   const { setCards } = useCard()
 
   const onSubmit: SubmitHandler<ItemForm> = (data) => {
