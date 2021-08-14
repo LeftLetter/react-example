@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 
-const cards = [
+let cards = [
   {
     id: "886497b8-2e76-7532-5616-1f8f416bc65b",
     title: "一番目",
@@ -42,9 +42,8 @@ router.post("/", function (req, res, next) {
 });
 
 router.delete("/", function (req, res, next) {
-  const newCards = cards.filter((e) => {
-    e.id !== res.id;
-  });
+  const data = req.body;
+  const newCards = cards.filter((e) => e.id !== data.id);
   cards = newCards;
   res.json(newCards);
 });
