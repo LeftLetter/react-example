@@ -1,14 +1,7 @@
 import React from 'react'
-import {
-  Control,
-  SubmitHandler,
-  useForm,
-  UseFormHandleSubmit,
-  UseFormRegister,
-  UseFormReset,
-} from 'react-hook-form'
+import { SubmitHandler, UseFormReturn } from 'react-hook-form'
 import styled from 'styled-components'
-import { useCard } from '../../hooks/useCard'
+import { useItemForm } from '../../hooks/useItemForm'
 import { cns } from '../../utils/common'
 import { ItemForm } from '../../utils/types/ItemForm'
 import { CommonButton } from '../atoms/CommonButton'
@@ -16,10 +9,7 @@ import { CommonInput } from '../atoms/CommonInput'
 import { CommonText } from '../atoms/CommonText'
 
 type Props = {
-  control: Control<ItemForm>
-  register: UseFormRegister<ItemForm>
-  reset: UseFormReset<ItemForm>
-  handleSubmit: UseFormHandleSubmit<ItemForm>
+  methods: UseFormReturn<ItemForm>
   onSubmit: SubmitHandler<ItemForm>
 } & ContainerProps
 
@@ -27,29 +17,35 @@ type ContainerProps = {
   className?: string
 }
 
-const Component: React.VFC<Props> = ({ className = '', ...props }) => (
+const Component: React.VFC<Props> = ({ className = '', methods, onSubmit }) => (
   <div className={cns('item-form-card', className)}>
-    <form onSubmit={props.handleSubmit(props.onSubmit)}>
+    <form onSubmit={methods.handleSubmit(onSubmit)}>
       <label htmlFor="title">
         <CommonText>Title</CommonText>
       </label>
       <CommonInput
-        control={props.control}
+        control={methods.control}
         id="title"
-        className="card-input"
         name="title"
-        rules={{ required: true }}
+        className="card-input"
       ></CommonInput>
       <label htmlFor="description">
         <CommonText>Description</CommonText>
       </label>
       <CommonInput
-        control={props.control}
+        control={methods.control}
         id="description"
-        className="card-input"
         name="description"
-        rules={{ required: true }}
+        className="card-input"
       ></CommonInput>
+      <CommonText size="small" colorTheme="error">
+        {methods.formState.errors.title?.message}
+      </CommonText>
+      <br />
+      <CommonText size="small" colorTheme="error">
+        {methods.formState.errors.description?.message}
+      </CommonText>
+
       <CommonButton className="add-button">追加</CommonButton>
     </form>
   </div>
@@ -66,6 +62,7 @@ export const StyledComponent = styled(Component)`
     border-radius: 10px;
     padding: 10px;
     margin: 10px;
+
     > * > .card-input {
       width: 100%;
       margin-bottom: 10px;
@@ -79,41 +76,13 @@ export const StyledComponent = styled(Component)`
   }
 `
 
-const Container: React.FC<ContainerProps> = (props) => {
-  const { control, register, reset, handleSubmit } = useForm<ItemForm>({
-    defaultValues: { title: '', description: '' },
-  })
-  const { setCards } = useCard()
-
-  const onSubmit: SubmitHandler<ItemForm> = (data) => {
-    ;(async () => {
-      let isOK = true
-      const response = await fetch('api/v1', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }).catch(() => {
-        isOK = false
-      })
-
-      if (isOK && response instanceof Response) {
-        const responseObj = await response.json()
-        setCards(responseObj)
-        reset()
-      }
-    })()
-  }
+const Container: React.FC<ContainerProps> = ({ className = '' }) => {
+  const { methods, onSubmit } = useItemForm()
 
   return (
     <StyledComponent
-      {...props}
-      control={control}
-      register={register}
-      reset={reset}
-      handleSubmit={handleSubmit}
+      className={className}
+      methods={methods}
       onSubmit={onSubmit}
     />
   )

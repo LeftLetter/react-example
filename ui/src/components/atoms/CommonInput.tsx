@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  ControllerFieldState,
   ControllerRenderProps,
   Path,
   useController,
@@ -9,29 +8,22 @@ import {
 import styled from 'styled-components'
 import { cns } from '../../utils/common'
 
-type Props<T> = {
+type Props<T> = JSX.IntrinsicElements['input'] & {
   className?: string
-  id?: string
   field: ControllerRenderProps<T, Path<T>>
-  fieldState?: ControllerFieldState
 }
 
-type ContainerProps<T> = UseControllerProps<T> & {
-  className?: string
-  id?: string
-}
+type ContainerProps<T> = JSX.IntrinsicElements['input'] &
+  UseControllerProps<T> & {
+    className?: string
+  }
 
-const Component = <T,>({
-  className = '',
-  id = '',
-  field,
-  fieldState,
-}: Props<T>) => (
+const Component = <T,>({ className = '', field, ...attributes }: Props<T>) => (
   <input
     className={cns('common-input', className)}
-    id={id}
     data-testid="common-input" // テスト用
     {...field}
+    {...attributes}
   />
 )
 
@@ -51,17 +43,15 @@ export const StyledComponent = styled(Component)`
 
 const Container = <T,>({
   className = '',
-  id = '',
   ...attributes
 }: ContainerProps<T>): JSX.Element => {
-  const { field, fieldState } = useController(attributes)
+  const { field } = useController(attributes)
 
   return (
     <StyledComponent<string>
       className={className}
-      id={id}
       field={field}
-      fieldState={fieldState}
+      {...attributes}
     />
   )
 }
