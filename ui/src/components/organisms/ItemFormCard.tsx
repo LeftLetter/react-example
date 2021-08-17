@@ -5,8 +5,8 @@ import { useItemForm } from '../../hooks/useItemForm'
 import { cns } from '../../utils/common'
 import { ItemForm } from '../../utils/types/ItemForm'
 import { CommonButton } from '../atoms/CommonButton'
-import { CommonInput } from '../atoms/CommonInput'
 import { CommonText } from '../atoms/CommonText'
+import { InputWithLabel } from '../molecules/InputWithLabel'
 
 type Props = {
   methods: UseFormReturn<ItemForm>
@@ -20,24 +20,12 @@ type ContainerProps = {
 const Component: React.VFC<Props> = ({ className = '', methods, onSubmit }) => (
   <div className={cns('item-form-card', className)}>
     <form onSubmit={methods.handleSubmit(onSubmit)}>
-      <label htmlFor="title">
-        <CommonText>Title</CommonText>
-      </label>
-      <CommonInput
-        control={methods.control}
-        id="title"
-        name="title"
-        className="card-input"
-      ></CommonInput>
-      <label htmlFor="description">
-        <CommonText>Description</CommonText>
-      </label>
-      <CommonInput
-        control={methods.control}
-        id="description"
+      <InputWithLabel methods={methods} name="title" label="Title" />
+      <InputWithLabel
+        methods={methods}
         name="description"
-        className="card-input"
-      ></CommonInput>
+        label="Description"
+      />
       <CommonText size="small" colorTheme="error">
         {methods.formState.errors.title?.message}
       </CommonText>
@@ -45,7 +33,6 @@ const Component: React.VFC<Props> = ({ className = '', methods, onSubmit }) => (
       <CommonText size="small" colorTheme="error">
         {methods.formState.errors.description?.message}
       </CommonText>
-
       <CommonButton className="add-button">追加</CommonButton>
     </form>
   </div>
@@ -63,11 +50,6 @@ export const StyledComponent = styled(Component)`
     padding: 10px;
     margin: 10px;
 
-    > * > .card-input {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-
     > * > .add-button {
       position: absolute;
       bottom: 10px;
@@ -76,16 +58,11 @@ export const StyledComponent = styled(Component)`
   }
 `
 
-const Container: React.FC<ContainerProps> = ({ className = '' }) => {
+const Container: React.FC<ContainerProps> = (props) => {
+  // react-hook-formの設定諸々を行う
   const { methods, onSubmit } = useItemForm()
 
-  return (
-    <StyledComponent
-      className={className}
-      methods={methods}
-      onSubmit={onSubmit}
-    />
-  )
+  return <StyledComponent {...props} methods={methods} onSubmit={onSubmit} />
 }
 
 export const ItemFormCard = Container

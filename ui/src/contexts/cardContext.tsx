@@ -34,6 +34,7 @@ export const CardContextProvider: React.VFC<Props> = (props) => {
     })()
   }
 
+  // Providerを分けることで不必要なレンダリングを防止
   return (
     <CardContext.Provider value={cards}>
       <CardUpdateContext.Provider value={{ setCards, removeCard }}>
