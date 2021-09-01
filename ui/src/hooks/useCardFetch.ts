@@ -1,24 +1,22 @@
 import { useContext, useEffect } from 'react'
-import { CardContext, CardUpdateContext } from '../contexts/cardContext'
-import { Cards } from '../utils/types/Cards'
+import { CardUpdateContext } from '../contexts/cardContext'
+import { CARD_ACTION_SET } from '../reducers/itemReducer'
+import { errorMessages } from '../utils/constTexts'
 
-export const useCardFetch = (): Cards => {
-  const cards = useContext(CardContext)
-  const { setCards } = useContext(CardUpdateContext)
+export const useCardFetch = (): void => {
+  const dispatch = useContext(CardUpdateContext)
 
-  if (setCards === undefined) {
-    throw new Error()
+  if (dispatch === undefined) {
+    throw new Error(errorMessages.USE_CONTEXTS_INNER_PROVIDER)
   }
 
   useEffect(() => {
     ;(async () => {
       const response = await fetch('api/v1')
       const responseObj = await response.json()
-      setCards(responseObj)
+      dispatch({ type: CARD_ACTION_SET, cards: responseObj })
     })()
-    // setCardsはuseStateのため不要
+    // dispatchはuseReducerのため不要
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  return cards
 }

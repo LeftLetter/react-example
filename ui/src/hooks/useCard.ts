@@ -1,16 +1,9 @@
-import { Dispatch, SetStateAction, useContext } from 'react'
-import { CardContext, CardUpdateContext } from '../contexts/cardContext'
-import { Cards } from '../utils/types/Cards'
+import { useContext } from 'react'
+import { CardContext } from '../contexts/cardContext'
+import { Cards } from '../types/Cards'
 
-export const useCard = (): {
-  cards: Cards
-  setCards: Dispatch<SetStateAction<Cards>>
-} => {
+export const useCard = (): Cards => {
   const cards = useContext(CardContext)
-  const { setCards } = useContext(CardUpdateContext)
 
-  if (setCards === undefined) {
-    throw new Error()
-  }
-  return { cards, setCards }
+  return cards
 }

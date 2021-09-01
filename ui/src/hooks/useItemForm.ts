@@ -1,13 +1,17 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useContext } from 'react'
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form'
 import * as yup from 'yup'
-import { ItemForm } from '../utils/types/ItemForm'
-import { useCard } from './useCard'
+import { CardUpdateContext } from '../contexts/cardContext'
+import { CARD_ACTION_SET } from '../reducers/itemReducer'
+import { ItemForm } from '../types/ItemForm'
+import { errorMessages } from '../utils/constTexts'
 
 export const useItemForm = (): {
   methods: UseFormReturn<ItemForm>
   onSubmit: SubmitHandler<ItemForm>
 } => {
+  // バリデーション設定
   const schema = yup.object({
     title: yup
       .string()
@@ -23,7 +27,11 @@ export const useItemForm = (): {
     defaultValues: { title: '', description: '' },
     resolver: yupResolver(schema),
   })
-  const { setCards } = useCard()
+  const dispatch = useContext(CardUpdateContext)
+
+  if (dispatch === undefined) {
+    throw new Error(errorMessages.USE_CONTEXTS_INNER_PROVIDER)
+  }
 
   const onSubmit: SubmitHandler<ItemForm> = (data) => {
     ;(async () => {
@@ -41,7 +49,7 @@ export const useItemForm = (): {
 
       if (isOK && response instanceof Response) {
         const responseObj = await response.json()
-        setCards(responseObj)
+        dispatch({ type: CARD_ACTION_SET, cards: responseObj })
         methods.reset()
       }
     })()

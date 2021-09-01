@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useCardDelete } from '../../hooks/useCardDelete'
+import { Card } from '../../types/Cards'
 import { cns } from '../../utils/common'
-import { Card } from '../../utils/types/Cards'
 import { CommonButton } from '../atoms/CommonButton'
 import { CommonText } from '../atoms/CommonText'
 
