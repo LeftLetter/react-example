@@ -9,6 +9,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:storybook/recommended",
     "prettier"
   ],
   "rules": { "react/prop-types": "off", "react/react-in-jsx-scope": "off" },
