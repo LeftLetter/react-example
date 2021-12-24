@@ -7,7 +7,7 @@
   "extensions": [
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "jpoissonnier.vscode-styled-components",
+    "styled-components.vscode-styled-components",
     "eamodio.gitlens",
     "mhutchie.git-graph"
   ],
@@ -22,17 +22,9 @@
       "source.fixAll.eslint": true
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[json]": {
-      "editor.tabSize": 2
-    },
     "[jsonc]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.formatOnSave": true,
-      "editor.quickSuggestions": {
-        "strings": true
-      },
-      "editor.suggest.insertMode": "replace",
-      "editor.tabSize": 2
+      "editor.formatOnSave": true
     },
     "[markdown]": {
       "editor.formatOnSave": false
