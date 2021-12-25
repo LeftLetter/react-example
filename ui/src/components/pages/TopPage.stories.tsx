@@ -1,22 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { StyledComponent } from './TopPage'
+import { TopPage } from './TopPage'
 
 export default {
   title: 'Pages/TopPage',
-  component: StyledComponent,
-} as ComponentMeta<typeof StyledComponent>
+  component: TopPage,
+} as ComponentMeta<typeof TopPage>
 
-const Template: ComponentStory<typeof StyledComponent> = ({ ...args }) => (
-  <StyledComponent {...args} />
+const Template: ComponentStory<typeof TopPage> = ({ ...args }) => (
+  <TopPage {...args} />
 )
 
 export const Default = Template.bind({})
-Default.args = {
-  cards: [
-    { id: '0', title: 'aaa', description: 'aaa' },
-    { id: '1', title: 'aaa', description: 'aaa' },
-    { id: '2', title: 'aaa', description: 'aaa' },
-    { id: '3', title: 'aaa', description: 'aaa' },
-    { id: '4', title: 'aaa', description: 'aaa' },
-  ],
-}
+Default.args = {}

@@ -1,27 +1,17 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { useForm } from 'react-hook-form'
-import { StyledComponent } from './ItemFormCard'
+import { CardContextProvider } from '../../contexts/cardContext'
+import { ItemFormCard } from './ItemFormCard'
 
 export default {
   title: 'Organisms/ItemFormCard',
-  component: StyledComponent,
-} as ComponentMeta<typeof StyledComponent>
+  component: ItemFormCard,
+} as ComponentMeta<typeof ItemFormCard>
 
-const Template: ComponentStory<typeof StyledComponent> = ({ ...args }) => {
-  const { register, reset, handleSubmit } = useForm()
-
-  const onSubmit = () => console.log('OK')
-
-  return (
-    <StyledComponent
-      register={register}
-      reset={reset}
-      handleSubmit={handleSubmit}
-      onSubmit={onSubmit}
-      {...args}
-    />
-  )
-}
+const Template: ComponentStory<typeof ItemFormCard> = ({ ...args }) => (
+  <CardContextProvider>
+    <ItemFormCard {...args} />
+  </CardContextProvider>
+)
 
 export const Default = Template.bind({})
 Default.args = {}

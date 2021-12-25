@@ -1,13 +1,13 @@
 import { useContext } from 'react'
 import { CardUpdateContext } from '../contexts/cardContext'
 import { CARD_ACTION_REMOVE } from '../reducers/itemReducer'
-import { errorMessages } from '../utils/constTexts'
+import { ERROR_MESSAGES } from '../utils/const'
 
 export const useCardDelete = (): ((id: string) => void) => {
   const dispatch = useContext(CardUpdateContext)
 
   if (dispatch === undefined) {
-    throw new Error(errorMessages.USE_CONTEXTS_INNER_PROVIDER)
+    throw new Error(ERROR_MESSAGES.USE_CONTEXTS_INNER_PROVIDER)
   }
 
   const removeCard = (id: string) => {

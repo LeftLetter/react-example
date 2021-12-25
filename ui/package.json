@@ -61,7 +61,6 @@
     "prettier": "^2.3.2",
     "sass": "^1.37.0"
   },
-  "proxy": "http://server:3000",
   "msw": {
     "workerDirectory": "public"
   }
