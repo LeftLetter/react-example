@@ -17,9 +17,9 @@
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.12.2",
     "react-navi": "^0.14.4",
-    "react-scripts": "5.0.0",
+    "react-scripts": "4.x",
     "styled-components": "^5.3.0",
-    "typescript": "^4.1.2",
+    "typescript": "4.4.x",
     "yup": "^0.32.9"
   },
   "scripts": {
@@ -46,10 +46,8 @@
     "@storybook/addon-actions": "^6.4.9",
     "@storybook/addon-essentials": "^6.4.9",
     "@storybook/addon-links": "^6.4.9",
-    "@storybook/builder-webpack5": "^6.4.9",
-    "@storybook/manager-webpack5": "^6.4.9",
     "@storybook/node-logger": "^6.4.9",
-    "@storybook/preset-create-react-app": "^4.0.0",
+    "@storybook/preset-create-react-app": "3.x",
     "@storybook/react": "^6.4.9",
     "@types/styled-components": "^5.1.11",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
@@ -59,9 +57,12 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-storybook": "^0.5.5",
+    "msw": "^0.36.3",
     "prettier": "^2.3.2",
-    "sass": "^1.37.0",
-    "webpack": "5"
+    "sass": "^1.37.0"
   },
-  "proxy": "http://server:3000"
+  "proxy": "http://server:3000",
+  "msw": {
+    "workerDirectory": "public"
+  }
 }
