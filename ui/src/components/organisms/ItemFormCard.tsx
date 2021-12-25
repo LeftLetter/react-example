@@ -58,7 +58,7 @@ export const StyledComponent = styled(Component)`
   }
 `
 
-const Container: React.FC<ContainerProps> = (props) => {
+const Container: React.VFC<ContainerProps> = (props) => {
   // react-hook-formの設定諸々を行う
   const { methods, onSubmit } = useItemForm()
 

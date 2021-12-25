@@ -23,7 +23,7 @@ const Component: React.VFC<Props> = ({ className = '' }) => (
 export const StyledComponent = styled(Component)``
 
 // ContainerとComponentで分割するため、Template層は不要
-const Container: React.FC<ContainerProps> = (props) => {
+const Container: React.VFC<ContainerProps> = (props) => {
   return <StyledComponent {...props} />
 }
 

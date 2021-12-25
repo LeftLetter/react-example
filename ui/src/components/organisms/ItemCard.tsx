@@ -58,7 +58,7 @@ export const StyledComponent = styled(Component)`
   }
 `
 
-const Container: React.FC<ContainerProps> = (props) => {
+const Container: React.VFC<ContainerProps> = (props) => {
   const removeCard = useCardDelete()
 
   return <StyledComponent {...props} handleClick={removeCard} />
