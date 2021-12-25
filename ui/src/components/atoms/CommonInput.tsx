@@ -19,6 +19,8 @@ type ContainerProps<T> = JSX.IntrinsicElements['input'] &
   }
 
 const Component = <T,>({ className = '', field, ...attributes }: Props<T>) => (
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   <input
     className={cns('common-input', className)}
     data-testid="common-input" // テスト用
@@ -48,11 +50,7 @@ const Container = <T,>({
   const { field } = useController(attributes)
 
   return (
-    <StyledComponent<string>
-      className={className}
-      field={field}
-      {...attributes}
-    />
+    <StyledComponent<T> className={className} field={field} {...attributes} />
   )
 }
 
