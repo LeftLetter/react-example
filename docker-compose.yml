@@ -12,18 +12,13 @@ services:
       - ui-extensions:/root/.vscode-server/extensions
     command: /bin/sh -c "while sleep 1000; do :; done"
   server:
-    env_file:
-      - ./server/.env
     build:
       context: ./server/.devcontainer
       dockerfile: Dockerfile
-    volumes:
-      - .:/workspace:cached
-      - server-node-modules:/workspace/server/node_modules
-      - server-extensions:/root/.vscode-server/extensions
     command: /bin/sh -c "while sleep 1000; do :; done"
+    entrypoint: "npm start"
+    ports:
+      - "8081:8080"
 volumes:
   ui-node-modules:
-  server-node-modules:
   ui-extensions:
-  server-extensions:

@@ -1,0 +1,24 @@
+swagger: "2.0"
+
+paths:
+  /test:
+    get:
+      summary: "Test API"
+      description: "This is test API."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "test"
+        in: "query"
+        description: "test parameters"
+        required: true
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "a"
+          - "b"
+          - "c"
+      responses:
+        "200":
+          description: "test responses"
