@@ -2,13 +2,13 @@ import { useContext, useEffect } from 'react'
 import { CardUpdateContext } from '../contexts/cardContext'
 import { CARD_ACTION_SET } from '../reducers/itemReducer'
 import { getCard } from '../services/getCard'
-import { ERROR_MESSAGES } from '../utils/const'
+import { ERROR_MESSAGE } from '../utils/const'
 
 export const useCardFetch = (): void => {
   const dispatch = useContext(CardUpdateContext)
 
   if (dispatch === undefined) {
-    throw new Error(ERROR_MESSAGES.USE_CONTEXTS_INNER_PROVIDER)
+    throw new Error(ERROR_MESSAGE.USE_CONTEXTS_INNER_PROVIDER)
   }
 
   useEffect(() => {

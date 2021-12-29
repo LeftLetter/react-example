@@ -5,7 +5,7 @@ import * as yup from 'yup'
 import { CardUpdateContext } from '../contexts/cardContext'
 import { CARD_ACTION_SET } from '../reducers/itemReducer'
 import { ItemForm } from '../types/ItemForm'
-import { ERROR_MESSAGES } from '../utils/const'
+import { ERROR_MESSAGE } from '../utils/const'
 
 export const useItemForm = (): {
   methods: UseFormReturn<ItemForm>
@@ -30,7 +30,7 @@ export const useItemForm = (): {
   const dispatch = useContext(CardUpdateContext)
 
   if (dispatch === undefined) {
-    throw new Error(ERROR_MESSAGES.USE_CONTEXTS_INNER_PROVIDER)
+    throw new Error(ERROR_MESSAGE.USE_CONTEXTS_INNER_PROVIDER)
   }
 
   const onSubmit: SubmitHandler<ItemForm> = (data) => {

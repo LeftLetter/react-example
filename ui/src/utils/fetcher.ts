@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from './const'
+import { ERROR_MESSAGE } from './const'
 
 // jsonを取得するfetch APIラッパー
 export const fetchJson = async <T>(
@@ -13,7 +13,7 @@ export const fetchJson = async <T>(
       const json = await rawResponse.json()
       return json
     } catch (error) {
-      throw Error(ERROR_MESSAGES.CANNOT_CONVERT_TO_JSON)
+      throw Error(ERROR_MESSAGE.CANNOT_CONVERT_TO_JSON)
     }
   }
 
@@ -34,7 +34,7 @@ export const fetchText = async (
       const text = await rawResponse.text()
       return text
     } catch (error) {
-      throw Error(ERROR_MESSAGES.CANNOT_CONVERT_TO_TEXT)
+      throw Error(ERROR_MESSAGE.CANNOT_CONVERT_TO_TEXT)
     }
   }
 
@@ -45,6 +45,6 @@ export const fetchText = async (
 export const createHttpErrorMessage = (status: number): string => {
   switch (status) {
     default:
-      return ERROR_MESSAGES.UNEXPECTED_ERROR
+      return ERROR_MESSAGE.UNEXPECTED_ERROR
   }
 }

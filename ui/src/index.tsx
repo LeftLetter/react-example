@@ -6,7 +6,7 @@ import './styles/index.scss'
 // MSWの実行
 const prepare = async () => {
   if (process.env.NODE_ENV === 'development') {
-    const { worker } = await import('./mocks/browser.js')
+    const { worker } = await import('./mocks/browser')
     worker.start()
   }
   return

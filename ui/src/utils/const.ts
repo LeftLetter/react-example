@@ -1,6 +1,6 @@
 const API_BASE = `${process.env.REACT_APP_API_URL}/api/v1/`
 
-export const URL = {
+export const API_URL = {
   CARD: `${API_BASE}card`,
   // テスト用
   TEST_JSON_200: `${API_BASE}test/json/200`,
@@ -11,7 +11,7 @@ export const URL = {
   TEST_TEXT_500: `${API_BASE}test/text/500`,
 }
 
-export const ERROR_MESSAGES = {
+export const ERROR_MESSAGE = {
   UNEXPECTED_ERROR: '想定外のエラーが発生しました。',
   CANNOT_CONVERT_TO_JSON: 'jsonに変換できません',
   CANNOT_CONVERT_TO_TEXT: 'textに変換できません',

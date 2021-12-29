@@ -1,5 +1,5 @@
 import { Card, Cards } from '../types/Cards'
-import { ERROR_MESSAGES } from '../utils/const'
+import { ERROR_MESSAGE } from '../utils/const'
 
 export const CARD_ACTION_ADD = 'add'
 export const CARD_ACTION_REMOVE = 'remove'
@@ -21,6 +21,6 @@ export const cardReducer = (state: Cards, action: ActionType): Cards => {
     case CARD_ACTION_SET:
       return action.cards
     default:
-      throw new Error(ERROR_MESSAGES.UNDEFINED_ACTION_TYPE)
+      throw new Error(ERROR_MESSAGE.UNDEFINED_ACTION_TYPE)
   }
 }

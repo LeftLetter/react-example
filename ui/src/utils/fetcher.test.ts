@@ -1,6 +1,4 @@
-// const toFizzBuzz = require('./fizzbuzz');
-
-import { ERROR_MESSAGES, URL } from './const'
+import { API_URL, ERROR_MESSAGE } from './const'
 import { fetchJson, fetchText } from './fetcher'
 
 describe('fetchJsonのテスト', () => {
@@ -12,7 +10,7 @@ describe('fetchJsonのテスト', () => {
 
   it('200でjsonが返ってきた時に正常にレスポンスを取得できることを確認する', async () => {
     const response = await fetchJson<Response>(
-      `${URL.TEST_JSON_200}?${new URLSearchParams(request)}`
+      `${API_URL.TEST_JSON_200}?${new URLSearchParams(request)}`
     )
     expect(response).toStrictEqual(expectedResponse)
   })
@@ -23,11 +21,11 @@ describe('fetchJsonのテスト', () => {
     // エラーメッセージが正しいこと
     try {
       await fetchJson<Response>(
-        `${URL.TEST_JSON_400}?${new URLSearchParams(request)}`
+        `${API_URL.TEST_JSON_400}?${new URLSearchParams(request)}`
       )
     } catch (error) {
       if (error instanceof Error) {
-        expect(error.message).toMatch(ERROR_MESSAGES.UNEXPECTED_ERROR)
+        expect(error.message).toMatch(ERROR_MESSAGE.UNEXPECTED_ERROR)
       }
     }
   })
@@ -38,11 +36,11 @@ describe('fetchJsonのテスト', () => {
     // エラーメッセージが正しいこと
     try {
       await fetchJson<Response>(
-        `${URL.TEST_JSON_500}?${new URLSearchParams(request)}`
+        `${API_URL.TEST_JSON_500}?${new URLSearchParams(request)}`
       )
     } catch (error) {
       if (error instanceof Error) {
-        expect(error.message).toMatch(ERROR_MESSAGES.UNEXPECTED_ERROR)
+        expect(error.message).toMatch(ERROR_MESSAGE.UNEXPECTED_ERROR)
       }
     }
   })
@@ -53,11 +51,11 @@ describe('fetchJsonのテスト', () => {
     // エラーメッセージが正しいこと
     try {
       await fetchJson<Response>(
-        `${URL.TEST_TEXT_200}?${new URLSearchParams(request)}`
+        `${API_URL.TEST_TEXT_200}?${new URLSearchParams(request)}`
       )
     } catch (error) {
       if (error instanceof Error) {
-        expect(error.message).toMatch(ERROR_MESSAGES.CANNOT_CONVERT_TO_JSON)
+        expect(error.message).toMatch(ERROR_MESSAGE.CANNOT_CONVERT_TO_JSON)
       }
     }
   })
@@ -69,7 +67,7 @@ describe('fetchTextのテスト', () => {
 
   it('200でtextが返ってきた時に正常にレスポンスを取得できることを確認する', async () => {
     const response = await fetchText(
-      `${URL.TEST_TEXT_200}?${new URLSearchParams(request)}`
+      `${API_URL.TEST_TEXT_200}?${new URLSearchParams(request)}`
     )
     expect(response).toStrictEqual(expectedResponse)
   })
@@ -79,10 +77,12 @@ describe('fetchTextのテスト', () => {
     expect.assertions(1)
     // エラーメッセージが正しいこと
     try {
-      await fetchText(`${URL.TEST_TEXT_400}?${new URLSearchParams(request)}`)
+      await fetchText(
+        `${API_URL.TEST_TEXT_400}?${new URLSearchParams(request)}`
+      )
     } catch (error) {
       if (error instanceof Error) {
-        expect(error.message).toMatch(ERROR_MESSAGES.UNEXPECTED_ERROR)
+        expect(error.message).toMatch(ERROR_MESSAGE.UNEXPECTED_ERROR)
       }
     }
   })
@@ -92,10 +92,12 @@ describe('fetchTextのテスト', () => {
     expect.assertions(1)
     // エラーメッセージが正しいこと
     try {
-      await fetchText(`${URL.TEST_TEXT_500}?${new URLSearchParams(request)}`)
+      await fetchText(
+        `${API_URL.TEST_TEXT_500}?${new URLSearchParams(request)}`
+      )
     } catch (error) {
       if (error instanceof Error) {
-        expect(error.message).toMatch(ERROR_MESSAGES.UNEXPECTED_ERROR)
+        expect(error.message).toMatch(ERROR_MESSAGE.UNEXPECTED_ERROR)
       }
     }
   })
