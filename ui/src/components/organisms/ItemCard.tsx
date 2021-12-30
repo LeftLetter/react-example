@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Card } from '../../contexts/cardContext'
 import { useCardDelete } from '../../hooks/useCardDelete'
-import { Card } from '../../types/Cards'
 import { cns } from '../../utils/common'
 import { CommonButton } from '../atoms/CommonButton'
 import { CommonText } from '../atoms/CommonText'

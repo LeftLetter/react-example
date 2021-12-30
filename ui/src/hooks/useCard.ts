@@ -1,6 +1,5 @@
 import { useContext } from 'react'
-import { CardContext } from '../contexts/cardContext'
-import { Cards } from '../types/Cards'
+import { CardContext, Cards } from '../contexts/cardContext'
 
 export const useCard = (): Cards => {
   const cards = useContext(CardContext)

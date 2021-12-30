@@ -1,4 +1,4 @@
-import { Card, Cards } from '../types/Cards'
+import { Card, Cards } from '../contexts/cardContext'
 import { ERROR_MESSAGE } from '../utils/const'
 
 export const CARD_ACTION_ADD = 'add'
