@@ -1,4 +1,4 @@
-import '../src/styles/index.scss'
+import '../src/assets/styles/index.scss'
 
 // MSWの実行
 if (typeof global.process === 'undefined') {

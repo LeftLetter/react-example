@@ -24,7 +24,7 @@ const Component: React.VFC<Props> = ({
   </button>
 )
 
-const StyledComponent = styled(Component)`
+export const StyledComponent = styled(Component)`
   &.common-button {
     width: 100px;
     height: 40px;

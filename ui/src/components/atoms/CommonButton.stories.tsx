@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { CommonButton } from './CommonButton'
+import { StyledComponent as CommonButton } from './CommonButton'
 
 export default {
   title: 'Atoms/CommonButton',

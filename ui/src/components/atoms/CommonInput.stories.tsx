@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { CommonInput } from './CommonInput'
+import { StyledComponent as CommonInput } from './CommonInput'
 
 export default {
   title: 'Atoms/CommonInput',
@@ -11,7 +11,4 @@ const Template: ComponentStory<typeof CommonInput> = (args) => (
 )
 
 export const Text = Template.bind({})
-Text.args = {
-  // type: 'text',
-  // disabled: false,
-}
+Text.args = { placeholder: '入力してください...' }
