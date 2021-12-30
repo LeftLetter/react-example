@@ -1,9 +1,16 @@
 import React, { createContext, Dispatch, useReducer } from 'react'
 import { ActionType, cardReducer, initialState } from '../reducers/itemReducer'
-import { Cards } from '../types/Cards'
 
-export const CardContext = React.createContext<Cards>(initialState)
+// Contextの型
+export type Card = {
+  id: string
+  title: string
+  description: string
+}
+export type Cards = Card[]
 
+// Context
+export const CardContext = createContext<Cards>(initialState)
 export const CardUpdateContext = createContext<
   Dispatch<ActionType> | undefined
 >(undefined)

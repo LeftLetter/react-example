@@ -1,7 +1,9 @@
-import { Cards } from '../types/Cards'
+import { Cards } from '../contexts/cardContext'
 import { API_URL } from '../utils/const'
 import { fetchJson } from '../utils/fetcher'
 
-export const getCard = async (): Promise<Cards> => {
-  return fetchJson<Cards>(API_URL.CARD)
+export type GetCardResponse = Cards
+
+export const getCard = async (): Promise<GetCardResponse> => {
+  return fetchJson<GetCardResponse>(API_URL.CARD)
 }

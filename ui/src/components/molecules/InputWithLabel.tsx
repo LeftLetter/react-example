@@ -1,7 +1,7 @@
 import React from 'react'
 import { UseFormReturn } from 'react-hook-form'
 import styled from 'styled-components'
-import { ItemForm } from '../../types/ItemForm'
+import { ItemForm } from '../../types/forms/ItemForm'
 import { cns } from '../../utils/common'
 import { CommonInput } from '../atoms/CommonInput'
 import { CommonText } from '../atoms/CommonText'

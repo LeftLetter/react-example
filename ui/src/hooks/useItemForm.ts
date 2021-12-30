@@ -3,8 +3,9 @@ import { useContext } from 'react'
 import { SubmitHandler, useForm, UseFormReturn } from 'react-hook-form'
 import * as yup from 'yup'
 import { CardUpdateContext } from '../contexts/cardContext'
-import { CARD_ACTION_SET } from '../reducers/itemReducer'
-import { ItemForm } from '../types/ItemForm'
+import { CARD_ACTION_ADD } from '../reducers/itemReducer'
+import { postCard } from '../services/postCard'
+import { ItemForm } from '../types/forms/ItemForm'
 import { ERROR_MESSAGE } from '../utils/const'
 
 export const useItemForm = (): {
@@ -23,34 +24,30 @@ export const useItemForm = (): {
       .required('Please enter the description.'),
   })
 
+  // フォームの本体
   const methods = useForm<ItemForm>({
     defaultValues: { title: '', description: '' },
     resolver: yupResolver(schema),
   })
+
   const dispatch = useContext(CardUpdateContext)
 
+  // ContextをProvider外で呼び出した場合はエラー
   if (dispatch === undefined) {
     throw new Error(ERROR_MESSAGE.USE_CONTEXTS_INNER_PROVIDER)
   }
 
+  // フォーム送信時に実行される関数
   const onSubmit: SubmitHandler<ItemForm> = (data) => {
     ;(async () => {
-      let isOK = true
-      const response = await fetch('api/v1', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }).catch(() => {
-        isOK = false
-      })
-
-      if (isOK && response instanceof Response) {
-        const responseObj = await response.json()
-        dispatch({ type: CARD_ACTION_SET, cards: responseObj })
+      try {
+        const res = await postCard(data)
+        dispatch({ type: CARD_ACTION_ADD, card: { ...data, id: res.id } })
+        // フォーム入力状態をリセット
         methods.reset()
+      } catch (error) {
+        // TODO: エラーメッセージをセット
+        return
       }
     })()
   }
