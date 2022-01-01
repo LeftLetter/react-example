@@ -19,7 +19,10 @@ const Component: React.VFC<Props> = ({ className = '', ...props }) => (
       {props.cards.map((e, i) => (
         <ItemCard key={i} card={e} />
       ))}
-      <ItemFormCard></ItemFormCard>
+      <ItemFormCard />
+      {Array.from('12345').map((_, i) => (
+        <div key={i} className="blank-card" />
+      ))}
     </div>
   </main>
 )
@@ -31,8 +34,14 @@ export const StyledComponent = styled(Component)`
     > .item-container {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-around;
       padding: 20px;
+
+      > .blank-card {
+        width: 300px;
+        min-width: 300px;
+        margin: 10px;
+      }
     }
   }
 `
