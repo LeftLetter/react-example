@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { cns } from '../../utils/common'
-import { CommonText } from '../atoms/CommonText'
+import { PageLink } from '../atoms/PageLink'
 
 type Props = {
   className?: string
@@ -10,17 +9,18 @@ type Props = {
 }
 
 const Component: React.VFC<Props> = ({ className = '', children }) => (
-  <header className={cns('header', className)}>
-    <CommonText
-      size="large"
-      colorTheme="sub"
-      className="header-text"
-      data-testid="header" // テスト用
-    >
+  <header className={cns('header', className)} data-testid="header">
+    <PageLink to="/" size="large" colorTheme="sub" className="title">
       {children}
-    </CommonText>
-    <Link to="/form">Form</Link>
-    <Link to="/graph">Graph</Link>
+    </PageLink>
+    <div className="sub-link-container">
+      <PageLink to="/form" className="link">
+        Form
+      </PageLink>
+      <PageLink to="/graph" className="link">
+        Graph
+      </PageLink>
+    </div>
   </header>
 )
 
@@ -35,11 +35,24 @@ const StyledComponent = styled(Component)`
     padding-right: 10px;
     background-color: var(--color-main);
     z-index: 1;
+    line-height: var(--line-height);
+    display: flex;
+    justify-content: space-between;
 
-    /* classNameを注入することでCommonTextを拡張 */
-    > .header-text {
-      line-height: var(--line-height);
-      white-space: nowrap;
+    > .title {
+      display: inline-block;
+      width: 400px;
+    }
+
+    > .sub-link-container {
+      flex: 1;
+      justify-content: space-around;
+      text-align: right;
+
+      > .link {
+        display: inline-block;
+        margin-left: 5px;
+      }
     }
   }
 `
