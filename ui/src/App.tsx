@@ -1,23 +1,18 @@
-import { mount, route } from 'navi'
 import React from 'react'
-import { Router, View } from 'react-navi'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { FormPage } from './components/pages/FormPage'
+import { GraphPage } from './components/pages/GraphPage'
 import { TopPage } from './components/pages/TopPage'
-
-const routes = mount({
-  '/': route({
-    view: <TopPage />,
-  }),
-  '/form': route({
-    view: <FormPage />,
-  }),
-})
 
 const App: React.VFC = () => {
   return (
-    <Router routes={routes}>
-      <View />
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<TopPage />} />
+        <Route path="form" element={<FormPage />} />
+        <Route path="graph" element={<GraphPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

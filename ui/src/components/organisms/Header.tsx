@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { cns } from '../../utils/common'
 import { CommonText } from '../atoms/CommonText'
@@ -18,6 +19,8 @@ const Component: React.VFC<Props> = ({ className = '', children }) => (
     >
       {children}
     </CommonText>
+    <Link to="/form">Form</Link>
+    <Link to="/graph">Graph</Link>
   </header>
 )
 
