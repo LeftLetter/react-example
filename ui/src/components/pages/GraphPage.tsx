@@ -12,7 +12,7 @@ type ContainerProps = {
 }
 
 const Component: React.VFC<Props> = ({ className = '' }) => (
-  <div className={cns('form-page', className)}>
+  <div className={cns('graph-page', className)}>
     <Header>React Example</Header>
     <CardContextProvider>
       <MainContents></MainContents>
@@ -27,4 +27,4 @@ const Container: React.VFC<ContainerProps> = (props) => {
   return <StyledComponent {...props} />
 }
 
-export const FormPage = Container
+export const GraphPage = Container
